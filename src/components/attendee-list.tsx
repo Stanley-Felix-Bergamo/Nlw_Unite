@@ -23,10 +23,16 @@ dayjs.locale("pt-BR");
 export function AttendeeList() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(attendees.length / 10);
 
   function onSearchInputChanged(event: ChangeEvent<HTMLInputElement>) {
     setSearch(event.target.value);
   }
+
+  const goToLastPage = () => setPage(totalPages);
+  const goToFirstPage = () => setPage(1);
+  const goToNextPage = () => setPage(page + 1);
+  const goToPreviousPage = () => setPage(page - 1);
 
   return (
     <div className="flex flex-col gap-4">
@@ -99,19 +105,19 @@ export function AttendeeList() {
             <TableCell className="text-right" colSpan={3}>
               <div className="inline-flex items-center gap-8">
                 <span>
-                  página {page} de {Math.ceil(attendees.length / 10)}
+                  página {page} de {totalPages}
                 </span>
                 <div className="flex gap-1.5">
-                  <IconButton>
+                  <IconButton onClick={goToFirstPage}>
                     <ChevronsLeft className="size-4" />
                   </IconButton>
-                  <IconButton>
+                  <IconButton onClick={goToPreviousPage}>
                     <ChevronLeft className="size-4" />
                   </IconButton>
-                  <IconButton>
+                  <IconButton onClick={goToNextPage}>
                     <ChevronRight className="size-4" />
                   </IconButton>
-                  <IconButton>
+                  <IconButton onClick={goToLastPage}>
                     <ChevronsRight className="size-4" />
                   </IconButton>
                 </div>
