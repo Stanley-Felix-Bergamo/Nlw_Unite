@@ -75,10 +75,7 @@ export function AttendeeList() {
         <tfoot>
           <tr>
             <TableCell colSpan={3}>Mostrando 10 de 228 itens</TableCell>
-            <td
-              className="px-4 py-3 text-sm text-right text-zinc-300"
-              colSpan={3}
-            >
+            <TableCell className="text-right" colSpan={3}>
               <div className="inline-flex items-center gap-8">
                 <span>página 1 de 23</span>
                 <div className="flex gap-1.5">
@@ -96,7 +93,7 @@ export function AttendeeList() {
                   </IconButton>
                 </div>
               </div>
-            </td>
+            </TableCell>
           </tr>
         </tfoot>
       </Table>
