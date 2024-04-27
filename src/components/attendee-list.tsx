@@ -14,20 +14,15 @@ import { Table } from "./table/table";
 import { TableHader } from "./table/table-header";
 import { TableCell } from "./table/table-cell";
 import { TableRow } from "./table/table-row";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { attendees } from "../data/attendees";
 
 dayjs.extend(relativeTime);
 dayjs.locale("pt-BR");
 
 export function AttendeeList() {
-  const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(attendees.length / 10);
-
-  function onSearchInputChanged(event: ChangeEvent<HTMLInputElement>) {
-    setSearch(event.target.value);
-  }
 
   const goToLastPage = () => setPage(totalPages);
   const goToFirstPage = () => setPage(1);
@@ -41,13 +36,11 @@ export function AttendeeList() {
         <div className="px-3 w-72 py-1.5 border border-white/10 rounded-lg flex items-center gap-3">
           <Search className="cursor-pointer size-4 text-emerald-300" />
           <input
-            onChange={onSearchInputChanged}
             type="text"
             className="flex-1 p-0 text-sm bg-transparent border-0 outline-none"
             placeholder="Buscar participantes..."
           />
         </div>
-        {search}
       </div>
 
       <Table>
